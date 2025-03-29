@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { login } from "../Services/api";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import "../Styles/LoginPage.css";  // Import CSS file
 
 const LoginPage = () => {
     const [email, setEmail] = useState("");
@@ -22,31 +23,24 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="flex h-screen items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-                <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Welcome Back</h2>
-                {error && <p className="text-red-500 text-sm text-center mb-3">{error}</p>}
-                <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="login-container">
+            <div className="login-box">
+                <h2>Welcome Back</h2>
+                {error && <p className="error-message">{error}</p>}
+                <form onSubmit={handleSubmit}>
                     <input
                         type="email"
-                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                         placeholder="Enter your email"
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                     <input
                         type="password"
-                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                         placeholder="Enter your password"
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                    <button
-                        type="submit"
-                        className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition-transform transform hover:scale-105"
-                    >
-                        Login
-                    </button>
+                    <button type="submit">Login</button>
                 </form>
             </div>
         </div>
